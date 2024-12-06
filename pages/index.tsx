@@ -33,8 +33,6 @@ export default function IndexPage(props: Props) {
     memo: "",
   });
 
-  console.log("payment.currency", payment.currency);
-
   const goToStep = (step: PaymentStep) => {
     setStep(step);
   };

@@ -37,7 +37,7 @@ export default function PaymentForm(props: Props) {
   };
 
   return (
-    <div className="w-96 mx-auto flex flex-col gap-4">
+    <div className="w-full md:w-96 mx-auto flex flex-col gap-4">
       <Input
         className="w-full"
         label="Order ID"
