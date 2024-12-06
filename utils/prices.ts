@@ -22,3 +22,7 @@ export const solRealTimePrice = async (): Promise<number | null> => {
 // ! however, coingecko provices prices for many fiat currencies, not just USD
 // ! when time is right, i will get a premium key and switch over
 // "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,solana&vs_currencies=usd,cny"
+
+// actually, binance provides a free api for prices in many currencies
+// https://binance-docs.github.io/apidocs/spot/en/#symbol-price-ticker
+// but it requires a key and it's not available for American users
