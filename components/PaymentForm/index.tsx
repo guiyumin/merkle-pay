@@ -1,5 +1,6 @@
-import { Button, Input, Textarea } from "@nextui-org/react";
+import { Button, Input, Select, Textarea, SelectItem } from "@nextui-org/react";
 import { Payment, PaymentStep } from "root/types";
+import { currencies, Currency } from "root/utils/currencies";
 import isEmail from "validator/lib/isEmail";
 
 type Props = {
@@ -22,8 +23,8 @@ export default function PaymentForm(props: Props) {
       return;
     }
 
-    if (!payment.usd_amount || Number(payment.usd_amount) <= 0) {
-      window.toast.error("Please enter amount");
+    if (!payment.currency_amount || Number(payment.currency_amount) <= 0) {
+      window.toast.error("Please enter correct amount");
       return;
     }
 
@@ -61,13 +62,31 @@ export default function PaymentForm(props: Props) {
         type="text"
         value={payment.receiver_address}
       />
+
+      <Select
+        className="w-full"
+        defaultSelectedKeys={[payment.currency || "USD"]}
+        items={currencies}
+        label="Currency"
+        name="currency"
+        onChange={(e) => {
+          updatePayment({ currency: e.target.value as Currency });
+        }}
+      >
+        {(currency) => (
+          <SelectItem key={currency.value} value={currency.value}>
+            {currency.label}
+          </SelectItem>
+        )}
+      </Select>
+
       <Input
         className="w-full"
-        label="USD Amount"
-        name="usd_amount"
+        label="Currency Amount"
+        name="currency_amount"
         type="number"
-        value={payment.usd_amount}
-        onChange={(e) => updatePayment({ usd_amount: e.target.value })}
+        value={payment.currency_amount}
+        onChange={(e) => updatePayment({ currency_amount: e.target.value })}
       />
       <Input
         className="w-full"

@@ -5,18 +5,20 @@ import PaymentForm from "root/components/PaymentForm";
 import { title } from "root/components/primitives";
 import DefaultLayout from "root/layouts/default";
 import { Payment, PaymentStep } from "root/types";
+import { Currency } from "root/utils/currencies";
 
 type Props = {
   blockchain: string;
   receiver_address: string;
   orderId: string;
+  currency: Currency;
+  currency_amount: string;
 };
 
-export default function IndexPage({
-  blockchain,
-  receiver_address,
-  orderId,
-}: Props) {
+export default function IndexPage(props: Props) {
+  const { blockchain, receiver_address, orderId, currency, currency_amount } =
+    props;
+
   const [step, setStep] = useState<PaymentStep>("form");
 
   const [payment, setPayment] = useState<Payment>({
@@ -25,10 +27,13 @@ export default function IndexPage({
     receiver_address,
     payer_name: "",
     payer_email: "",
-    usd_amount: "",
+    currency_amount,
+    currency,
     status: "initiated",
     memo: "",
   });
+
+  console.log("payment.currency", payment.currency);
 
   const goToStep = (step: PaymentStep) => {
     setStep(step);
@@ -65,6 +70,8 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
       blockchain: process.env.BLOCKCHAIN,
       receiver_address: process.env.RECEIVER_ADDRESS,
       orderId: query.orderId || "",
+      currency: (query.currency || "") as Currency,
+      currency_amount: query.amount || "",
     },
   };
 };
