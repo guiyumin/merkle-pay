@@ -5,7 +5,7 @@ import isEmail from "validator/lib/isEmail";
 type Props = {
   payment: Payment;
   goToStep: (step: PaymentStep) => void;
-  updatePayment: (k: string, v: string) => void;
+  updatePayment: (obj: Partial<Payment>) => void;
 };
 
 export default function PaymentForm(props: Props) {
@@ -43,29 +43,31 @@ export default function PaymentForm(props: Props) {
         name="orderId"
         type="text"
         value={payment.orderId}
+        onChange={(e) => updatePayment({ orderId: e.target.value })}
       />
       <Input
+        isReadOnly
         className="w-full"
         label="Blockchain"
         name="blockchain"
         type="text"
         value={payment.blockchain}
-        readOnly
       />
       <Input
+        isReadOnly
         className="w-full"
         label="Receiver Address"
         name="receiver_address"
         type="text"
         value={payment.receiver_address}
-        readOnly
       />
       <Input
         className="w-full"
         label="USD Amount"
         name="usd_amount"
-        type="text"
+        type="number"
         value={payment.usd_amount}
+        onChange={(e) => updatePayment({ usd_amount: e.target.value })}
       />
       <Input
         className="w-full"
@@ -73,6 +75,7 @@ export default function PaymentForm(props: Props) {
         name="payor_name"
         type="text"
         value={payment.payer_name}
+        onChange={(e) => updatePayment({ payer_name: e.target.value })}
       />
       <Input
         className="w-full"
@@ -81,12 +84,14 @@ export default function PaymentForm(props: Props) {
         placeholder="Enter your email"
         type="email"
         value={payment.payer_email}
+        onChange={(e) => updatePayment({ payer_email: e.target.value })}
       />
       <Textarea
         className="w-full"
         label="Memo"
         name="memo"
         value={payment.memo}
+        onChange={(e) => updatePayment({ memo: e.target.value })}
       />
       <Button color="primary" onClick={handleClickNext}>
         Next

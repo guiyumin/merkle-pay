@@ -34,11 +34,11 @@ export default function IndexPage({
     setStep(step);
   };
 
-  const updatePayment = (k: string, v: string) => {
+  const updatePayment = (obj: Partial<Payment>) => {
     setPayment((p) => {
       return {
         ...p,
-        [k]: v,
+        ...obj,
       };
     });
   };

@@ -1,8 +1,9 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + NextUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Merkle Pay | Open Source Payment Platform",
+  description:
+    "The payment platform that connects real-world and crypto worlds.",
   navItems: [
     {
       label: "Home",
