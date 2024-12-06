@@ -1,58 +1,40 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
-
-import { siteConfig } from "root/config/site";
-import { title, subtitle } from "root/components/primitives";
-import { GithubIcon } from "root/components/icons";
+import { Input, Textarea } from "@nextui-org/react";
+import { title } from "root/components/primitives";
 import DefaultLayout from "root/layouts/default";
 
 export default function IndexPage() {
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-        <div className="inline-block max-w-xl text-center justify-center">
-          <span className={title()}>Make&nbsp;</span>
-          <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-          <br />
-          <span className={title()}>
-            websites regardless of your design experience.
-          </span>
-          <div className={subtitle({ class: "mt-4" })}>
-            Beautiful, fast and modern React UI library.
-          </div>
-        </div>
-
-        <div className="flex gap-3">
-          <Link
-            isExternal
-            className={buttonStyles({
-              color: "primary",
-              radius: "full",
-              variant: "shadow",
-            })}
-            href={siteConfig.links.docs}
-          >
-            Documentation
-          </Link>
-          <Link
-            isExternal
-            className={buttonStyles({ variant: "bordered", radius: "full" })}
-            href={siteConfig.links.github}
-          >
-            <GithubIcon size={20} />
-            GitHub
-          </Link>
-        </div>
-
-        <div className="mt-8">
-          <Snippet hideCopyButton hideSymbol variant="bordered">
-            <span>
-              Get started by editing{" "}
-              <Code color="primary">pages/index.tsx</Code>
-            </span>
-          </Snippet>
+        <h1 className={title({ size: "sm" })}>Merkle Pay</h1>
+        <div className="w-96 mx-auto flex flex-col gap-4">
+          <Input
+            className="w-full"
+            label="Order ID"
+            name="orderId"
+            type="text"
+          />
+          <Input
+            className="w-full"
+            label="Receiver Address (USDT ERC20)"
+            name="receiverAddress"
+            type="text"
+          />
+          <Input className="w-full" label="Amount" name="amount" type="text" />
+          <Input
+            className="w-full"
+            label="Payor Name"
+            name="payor_name"
+            type="text"
+          />
+          <Input
+            className="w-full"
+            label="Email"
+            name="payor_email"
+            placeholder="Enter your email"
+            type="email"
+          />
+          <Textarea className="w-full" label="Memo" name="memo" />
         </div>
       </section>
     </DefaultLayout>

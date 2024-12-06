@@ -1,6 +1,5 @@
 import React from "react";
 import NextHead from "next/head";
-
 import { siteConfig } from "root/config/site";
 
 export const Head = () => {
